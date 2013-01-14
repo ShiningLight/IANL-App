@@ -4,7 +4,7 @@
     <string name="app_name">IANL Prayer Times Widget</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="mosque_prayer_timetableprayer_timetable_widget_labelprayer_timetable_widget_label">IANL</string>
+    <string name="mosque_prayer_timetable">IANL</string>
     <string name="prayer_timetable_widget_label">IANL Daily Prayer Times</string>
 
 </resources>
