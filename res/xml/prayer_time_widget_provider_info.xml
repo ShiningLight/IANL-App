@@ -8,5 +8,5 @@
     android:minHeight="110dp"
     android:label="@string/prayer_timetable_widget_label"
     android:updatePeriodMillis="43200000"    
-    android:resizeMode="horizontal|vertical"
+    android:resizeMode="horizontal"
 />

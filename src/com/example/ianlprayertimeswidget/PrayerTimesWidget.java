@@ -2,19 +2,18 @@ package com.example.ianlprayertimeswidget;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 public class PrayerTimesWidget extends AppWidgetProvider {
-	final private SimpleDateFormat dt = new SimpleDateFormat("hh:mm");
-	
+	final static public SimpleDateFormat prayerSdf = 
+			new SimpleDateFormat("hh:mm");
+	final private SimpleDateFormat dateSdf = 
+			new SimpleDateFormat("EEE d MMM ''yy");
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
 			int[] appWidgetIds) {
@@ -26,33 +25,9 @@ public class PrayerTimesWidget extends AppWidgetProvider {
 
 		int[] allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
 		for (int widgetId : allWidgetIds) {
-
+			
+			// Set the data in the views of the widget
 			RemoteViews remoteViews = updatePrayerTimeWidgetUI(context);
-			/*RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
-					R.layout.prayer_times_grid);*/
-
-			/*// Set the text
-			remoteViews.setTextViewText(R.id.prayer_times_date_textView,
-					"Mon 23rd Jan 2012");*/
-			/*Log.d("PTW", "widgetId is: " + widgetId);
-			Intent intent = new Intent(context, 
-					PrayerTimesRemoteViewsService.class);
-			intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId);*/
-			
-			/*remoteViews.setRemoteAdapter(widgetId, 
-					R.id.prayer_tiems_gridViewOnly, intent);*/
-			
-			/*// Register an onClickListener
-			Intent widgetIntent = new Intent(context, PrayerTimesWidget.class);
-
-			widgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-			widgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
-
-			PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-					0, widgetIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-			
-			remoteViews.setOnClickPendingIntent(R.id.prayer_times_date_textView,
-					pendingIntent);*/
 			
 			// Notify App manager to update widget using modified remote view
 			appWidgetManager.updateAppWidget(widgetId, remoteViews);
@@ -62,23 +37,45 @@ public class PrayerTimesWidget extends AppWidgetProvider {
 
 	private RemoteViews updatePrayerTimeWidgetUI(Context context) {
 		RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
-				R.layout.prayer_times_grid);
+				R.layout.prayer_times_widget_layout);
 		
 		try {
-			PrayerTimings pt = fetchTodaysPrayerTimes();
+			PrayerTimings pt = new PrayerTimesFetcher().fetchTodaysPrayerTimes();
 			
+			// Set todays date
 			remoteViews.setTextViewText(R.id.todays_prayer_times_date_textView,
-					pt.getToday().toString());
+					dateSdf.format(pt.getToday()));
 			
+			// Set the prayer times
 			remoteViews.setTextViewText(R.id.fajr_start_textView, 
-					dt.format(pt.getStartTimes()[0]));
+					prayerSdf.format(pt.getStartTimes()[0]));
 			remoteViews.setTextViewText(R.id.fajr_jamaa_textView, 
-					dt.format(pt.getJamaaTimes()[0]));
+					prayerSdf.format(pt.getJamaaTimes()[0]));
+			
+			remoteViews.setTextViewText(R.id.sunrise_start_textView, 
+					prayerSdf.format(pt.getStartTimes()[1]));
+			remoteViews.setTextViewText(R.id.sunrise_jamaa_textView, 
+					prayerSdf.format(pt.getJamaaTimes()[1]));
 			
 			remoteViews.setTextViewText(R.id.dhuhr_start_textView, 
-					dt.format(pt.getStartTimes()[1]));
+					prayerSdf.format(pt.getStartTimes()[1]));
 			remoteViews.setTextViewText(R.id.dhuhr_jamaa_textView, 
-					dt.format(pt.getJamaaTimes()[1]));
+					prayerSdf.format(pt.getJamaaTimes()[1]));
+			
+			remoteViews.setTextViewText(R.id.asr_start_textView, 
+					prayerSdf.format(pt.getStartTimes()[1]));
+			remoteViews.setTextViewText(R.id.asr_jamaa_textView, 
+					prayerSdf.format(pt.getJamaaTimes()[1]));
+			
+			remoteViews.setTextViewText(R.id.maghrib_start_textView, 
+					prayerSdf.format(pt.getStartTimes()[1]));
+			remoteViews.setTextViewText(R.id.maghrib_jamaa_textView, 
+					prayerSdf.format(pt.getJamaaTimes()[1]));
+			
+			remoteViews.setTextViewText(R.id.isha_start_textView, 
+					prayerSdf.format(pt.getStartTimes()[1]));
+			remoteViews.setTextViewText(R.id.isha_jamaa_textView, 
+					prayerSdf.format(pt.getJamaaTimes()[1]));
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -86,19 +83,6 @@ public class PrayerTimesWidget extends AppWidgetProvider {
 		
 		return remoteViews;
 		
-	}
-	
-	private PrayerTimings fetchTodaysPrayerTimes() throws ParseException {
-		//dummy data
-		Date today = new Date();			
-		//fajr,sunrise,..
-		Date[] start = {dt.parse("05:30"), dt.parse("07:30"), dt.parse("12:30"),
-				dt.parse("14:30"), dt.parse("16:30")};
-		Date[] jamaa = {dt.parse("06:30"), dt.parse("07:30"), dt.parse("13:00"),
-				dt.parse("15:30"), dt.parse("16:30")};
-		PrayerTimings pt = new PrayerTimings(today, start, jamaa);
-		
-		return pt;
 	}
 
 	@Override
