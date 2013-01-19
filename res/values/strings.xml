@@ -15,5 +15,6 @@
     <string name="asr_label">Asr</string>
     <string name="maghrib_label">Maghrib</string>
     <string name="isha_label">Isha</string>
+    <string name="my_url_feed">https://www.</string>
 
 </resources>

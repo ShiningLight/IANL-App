@@ -1,7 +1,6 @@
 package com.example.ianlprayertimeswidget;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -10,22 +9,16 @@ import android.content.Context;
 import android.widget.RemoteViews;
 
 public class PrayerTimesWidget extends AppWidgetProvider {
-	final static public SimpleDateFormat prayerSdf = 
-			new SimpleDateFormat("hh:mm");
-	final private SimpleDateFormat dateSdf = 
-			new SimpleDateFormat("EEE d MMM ''yy");
-	@Override
+	
+	@Override // Update the widget UI
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
 			int[] appWidgetIds) {
-		// Update the widget UI
-
 		// Get all ids
 		ComponentName thisWidget = new ComponentName(context,
 				PrayerTimesWidget.class);
 
 		int[] allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
-		for (int widgetId : allWidgetIds) {
-			
+		for (int widgetId : allWidgetIds) {			
 			// Set the data in the views of the widget
 			RemoteViews remoteViews = updatePrayerTimeWidgetUI(context);
 			
@@ -40,42 +33,10 @@ public class PrayerTimesWidget extends AppWidgetProvider {
 				R.layout.prayer_times_widget_layout);
 		
 		try {
-			PrayerTimings pt = new PrayerTimesFetcher().fetchTodaysPrayerTimes();
+			PrayerTimings pt = 
+					new PrayerTimesFetcher(context).fetchTodaysPrayerTimes();
 			
-			// Set todays date
-			remoteViews.setTextViewText(R.id.todays_prayer_times_date_textView,
-					dateSdf.format(pt.getToday()));
-			
-			// Set the prayer times
-			remoteViews.setTextViewText(R.id.fajr_start_textView, 
-					prayerSdf.format(pt.getStartTimes()[0]));
-			remoteViews.setTextViewText(R.id.fajr_jamaa_textView, 
-					prayerSdf.format(pt.getJamaaTimes()[0]));
-			
-			remoteViews.setTextViewText(R.id.sunrise_start_textView, 
-					prayerSdf.format(pt.getStartTimes()[1]));
-			remoteViews.setTextViewText(R.id.sunrise_jamaa_textView, 
-					prayerSdf.format(pt.getJamaaTimes()[1]));
-			
-			remoteViews.setTextViewText(R.id.dhuhr_start_textView, 
-					prayerSdf.format(pt.getStartTimes()[1]));
-			remoteViews.setTextViewText(R.id.dhuhr_jamaa_textView, 
-					prayerSdf.format(pt.getJamaaTimes()[1]));
-			
-			remoteViews.setTextViewText(R.id.asr_start_textView, 
-					prayerSdf.format(pt.getStartTimes()[1]));
-			remoteViews.setTextViewText(R.id.asr_jamaa_textView, 
-					prayerSdf.format(pt.getJamaaTimes()[1]));
-			
-			remoteViews.setTextViewText(R.id.maghrib_start_textView, 
-					prayerSdf.format(pt.getStartTimes()[1]));
-			remoteViews.setTextViewText(R.id.maghrib_jamaa_textView, 
-					prayerSdf.format(pt.getJamaaTimes()[1]));
-			
-			remoteViews.setTextViewText(R.id.isha_start_textView, 
-					prayerSdf.format(pt.getStartTimes()[1]));
-			remoteViews.setTextViewText(R.id.isha_jamaa_textView, 
-					prayerSdf.format(pt.getJamaaTimes()[1]));
+			remoteViews = setUIWithTimes(remoteViews, pt);			
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -83,6 +44,40 @@ public class PrayerTimesWidget extends AppWidgetProvider {
 		
 		return remoteViews;
 		
+	}
+
+	private RemoteViews setUIWithTimes(RemoteViews remoteViews, PrayerTimings pt) {
+		// Set todays date
+		remoteViews.setTextViewText(R.id.todays_prayer_times_date_textView,
+				pt.getTodaysDate());
+
+		// Set the prayer times
+		remoteViews.setTextViewText(R.id.sunrise_start_textView,
+				pt.getStartTimesAtIndex(1));
+		remoteViews.setTextViewText(R.id.sunrise_jamaa_textView,
+				pt.getJamaaTimesAtIndex(1));
+
+		remoteViews.setTextViewText(R.id.dhuhr_start_textView,
+				pt.getStartTimesAtIndex(2));
+		remoteViews.setTextViewText(R.id.dhuhr_jamaa_textView,
+				pt.getJamaaTimesAtIndex(2));
+
+		remoteViews.setTextViewText(R.id.asr_start_textView,
+				pt.getStartTimesAtIndex(3));
+		remoteViews.setTextViewText(R.id.asr_jamaa_textView,
+				pt.getJamaaTimesAtIndex(3));
+
+		remoteViews.setTextViewText(R.id.maghrib_start_textView,
+				pt.getStartTimesAtIndex(4));
+		remoteViews.setTextViewText(R.id.maghrib_jamaa_textView,
+				pt.getJamaaTimesAtIndex(4));
+
+		remoteViews.setTextViewText(R.id.isha_start_textView,
+				pt.getStartTimesAtIndex(5));
+		remoteViews.setTextViewText(R.id.isha_jamaa_textView,
+				pt.getJamaaTimesAtIndex(5));
+		
+		return remoteViews;
 	}
 
 	@Override

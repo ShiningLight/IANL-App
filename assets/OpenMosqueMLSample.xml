@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oml:OpenMosqueML xmlns:oml="http://ianl.org.uk/OpenMosqueML"
+			      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			      xsi:schemaLocation="oml OpenMosqueML.xsd"
+			      oml:version="1.0">
+
+<oml:Organisation>
+	<oml:Address>IANL, 683-685 High Road, North Finchley, London, N12 0DA</oml:Address>
+	<oml:TelephoneNumber>020 8492 0028</oml:TelephoneNumber>
+	<oml:FaxNumber></oml:FaxNumber>
+	<oml:WebsiteURL>http://ianl.org.uk</oml:WebsiteURL>
+	<oml:Email>info@ianl.org.uk</oml:Email>
+</oml:Organisation>
+<oml:PrayerTimetable>
+	<oml:FridayJummahTimes>
+		<oml:JummahTime fromDate="2013-01-04">12:45:00</oml:JummahTime>
+		<oml:JummahTime fromDate="2013-01-04">13:30:00</oml:JummahTime>
+	</oml:FridayJummahTimes>
+	<oml:Day>
+		<oml:Date>2013-01-19</oml:Date>
+		<oml:FajrStart>05:57:00</oml:FajrStart>
+		<oml:FajrJamaat>06:30:00</oml:FajrJamaat>
+		<oml:Shrooq>07:53:00</oml:Shrooq>
+		<oml:DhuhrStart>12:16:00</oml:DhuhrStart>
+		<oml:DhuhrJamaat>13:00:00</oml:DhuhrJamaat>
+		<oml:AsrStart>14:39:00</oml:AsrStart>
+		<oml:AsrJamaat>15:15:00</oml:AsrJamaat>
+		<oml:MaghribStart>16:30:00</oml:MaghribStart>
+		<oml:MaghribJamaat>16:35:00</oml:MaghribJamaat>
+		<oml:IshaaStart>18:26:00</oml:IshaaStart>
+		<oml:IshaaJamaat>20:00:00</oml:IshaaJamaat>
+	</oml:Day>
+	<oml:Day>
+		<oml:Date>2013-01-20</oml:Date>
+		<oml:FajrStart>05:57:00</oml:FajrStart>
+		<oml:FajrJamaat>06:30:00</oml:FajrJamaat>
+		<oml:Shrooq>07:52:00</oml:Shrooq>
+		<oml:DhuhrStart>12:17:00</oml:DhuhrStart>
+		<oml:DhuhrJamaat>13:00:00</oml:DhuhrJamaat>
+		<oml:AsrStart>14:41:00</oml:AsrStart>
+		<oml:AsrJamaat>15:15:00</oml:AsrJamaat>
+		<oml:MaghribStart>16:32:00</oml:MaghribStart>
+		<oml:MaghribJamaat>16:37:00</oml:MaghribJamaat>
+		<oml:IshaaStart>18:27:00</oml:IshaaStart>
+		<oml:IshaaJamaat>20:00:00</oml:IshaaJamaat>
+	</oml:Day>
+</oml:PrayerTimetable>
+
+</oml:OpenMosqueML>
