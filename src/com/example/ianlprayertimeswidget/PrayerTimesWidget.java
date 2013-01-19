@@ -52,6 +52,11 @@ public class PrayerTimesWidget extends AppWidgetProvider {
 				pt.getTodaysDate());
 
 		// Set the prayer times
+		remoteViews.setTextViewText(R.id.fajr_start_textView,
+				pt.getStartTimesAtIndex(0));
+		remoteViews.setTextViewText(R.id.fajr_jamaa_textView,
+				pt.getJamaaTimesAtIndex(0));
+		
 		remoteViews.setTextViewText(R.id.sunrise_start_textView,
 				pt.getStartTimesAtIndex(1));
 		remoteViews.setTextViewText(R.id.sunrise_jamaa_textView,

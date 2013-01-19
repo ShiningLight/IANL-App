@@ -55,18 +55,19 @@ public class PrayerTimings {
 	}
 	
 	public String getStartTimesAtIndex(int index) {
-		try {
-			return prayerSdf.format(prayerSdf.parse(mStartTimes.get(index)));
-		} catch (ParseException e) {
-			return mStartTimes.get(index); // return unformatted string
-		}
+		return formatTimeString(mStartTimes.get(index));
 	}
 	
 	public String getJamaaTimesAtIndex(int index) {
+		return formatTimeString(mJamaaTimes.get(index));
+	}
+	
+	private String formatTimeString(String time) {
 		try {
-			return prayerSdf.format(prayerSdf.parse(mJamaaTimes.get(index)));
-		} catch (ParseException e) {
-			return mJamaaTimes.get(index); // return unformatted string
+			return prayerSdf.format(prayerSdf.parse(time));
+		} 
+		catch (ParseException e) {
+			return time; // return unformatted string
 		}
 	}
 	

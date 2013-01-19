@@ -59,7 +59,7 @@ public class PrayerTimesFetcher {
 		
 		return pt;
 	}
-
+	//TODO: CHECK TIME AND COMPARE WITH TODAY TO GET CORRECT TIMES!!!
 	private PrayerTimings processStream(InputStream in) {
 		PrayerTimings pTimings = null;
 		XmlPullParserFactory factory;
@@ -91,7 +91,7 @@ public class PrayerTimesFetcher {
 								&& xpp.getName().equals("Day")) {
 							Log.d("PTF", "in day tag");
 							
-							// Process each result within the oml:Day tag.
+							// Process each result within the Day tag.
 							while (!(eventType == XmlPullParser.END_TAG && 
 									xpp.getName().equals("Day"))) {
 								
