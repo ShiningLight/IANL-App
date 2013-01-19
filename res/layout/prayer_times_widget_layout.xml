@@ -12,6 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
+
         <TextView
             android:id="@+id/mosque_name_textView"
             android:layout_width="wrap_content"
@@ -19,7 +20,8 @@
             android:layout_weight="1"
             android:gravity="left"
             android:lines="1"
-            android:text="@string/mosque_prayer_timetable" />
+            android:text="@string/mosque_prayer_timetable"
+            android:textColor="#FFFF00" />
 
         <TextView
             android:id="@+id/todays_prayer_times_date_textView"
@@ -28,7 +30,8 @@
             android:layout_weight="2"
             android:gravity="right"
             android:lines="1"
-            android:text="DATE" />
+            android:textColor="#FFFF00" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -36,29 +39,32 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
+
         <TextView
             android:id="@+id/prayer_header_textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_weight="1"
+            android:lines="1"
             android:text="@string/prayer_heading_tag" />
 
         <TextView
             android:id="@+id/start_header_textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_weight="1"
+            android:lines="1"
             android:text="@string/start_time_heading_tag" />
 
         <TextView
             android:id="@+id/jamaa_header_textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
             android:layout_weight="1"
+            android:lines="1"
             android:text="@string/jamaa_heading_tag" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -66,13 +72,16 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
+
         <TextView
             android:id="@+id/fajr_title_textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_weight="1"
-            android:text="@string/fajr_label" />
+            android:lines="1"
+            android:text="@string/fajr_label"
+            android:textColor="#FFFFFFFF" />
 
         <TextView
             android:id="@+id/fajr_start_textView"
@@ -80,7 +89,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_weight="1"
-            android:text="1:00" />
+            android:lines="1"
+            android:textColor="#FFFFFFFF" />
 
         <TextView
             android:id="@+id/fajr_jamaa_textView"
@@ -88,7 +98,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_weight="1"
-            android:text="2:00" />
+            android:lines="1"
+            android:textColor="#FFFFFFFF" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -103,7 +115,9 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="left"
 	        android:layout_weight="1"
-	        android:text="@string/sunrise_label" />
+	        android:lines="1"
+	        android:text="@string/sunrise_label"
+	        android:textColor="#FFFFFFFF" />
 	
 	    <TextView
 	        android:id="@+id/sunrise_start_textView"
@@ -111,7 +125,8 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="right"
 	        android:layout_weight="1"
-	        android:text="1:00" />
+	        android:lines="1"
+	        android:textColor="#FFFFFFFF" />
 	
 	    <TextView
 	        android:id="@+id/sunrise_jamaa_textView"
@@ -119,7 +134,10 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="right"
 	        android:layout_weight="1"
-	        android:text="" />
+	        android:lines="1"
+	        android:text=""
+	        android:textColor="#FFFFFFFF" />
+
     </LinearLayout>
     
 	<LinearLayout
@@ -134,7 +152,9 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="left"
 	        android:layout_weight="1"
-	        android:text="@string/dhuhr_label" />
+	        android:lines="1"
+	        android:text="@string/dhuhr_label"
+	        android:textColor="#FFFFFFFF" />
 	
 	    <TextView
 	        android:id="@+id/dhuhr_start_textView"
@@ -142,7 +162,8 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="right"
 	        android:layout_weight="1"
-	        android:text="1:00" />
+	        android:lines="1"
+	        android:textColor="#FFFFFFFF" />
 	
 	    <TextView
 	        android:id="@+id/dhuhr_jamaa_textView"
@@ -150,7 +171,9 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="right"
 	        android:layout_weight="1"
-	        android:text="2:00" />	
+	        android:lines="1"
+	        android:textColor="#FFFFFFFF" />
+	
 	</LinearLayout>
 
 	<LinearLayout
@@ -165,7 +188,9 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="left"
 	        android:layout_weight="1"
-	        android:text="@string/asr_label" />
+	        android:lines="1"
+	        android:text="@string/asr_label"
+	        android:textColor="#FFFFFFFF" />
 	
 	    <TextView
 	        android:id="@+id/asr_start_textView"
@@ -173,7 +198,8 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="right"
 	        android:layout_weight="1"
-	        android:text="1:00" />
+	        android:lines="1"
+	        android:textColor="#FFFFFFFF" />
 	
 	    <TextView
 	        android:id="@+id/asr_jamaa_textView"
@@ -181,7 +207,9 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="right"
 	        android:layout_weight="1"
-	        android:text="2:00" />
+	        android:lines="1"
+	        android:textColor="#FFFFFFFF" />
+
 	</LinearLayout>
 
 	<LinearLayout
@@ -196,7 +224,9 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="left"
 	        android:layout_weight="1"
-	        android:text="@string/maghrib_label" />
+	        android:lines="1"
+	        android:text="@string/maghrib_label"
+	        android:textColor="#FFFFFFFF" />
 	
 	    <TextView
 	        android:id="@+id/maghrib_start_textView"
@@ -204,7 +234,8 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="right"
 	        android:layout_weight="1"
-	        android:text="1:00" />
+	        android:lines="1"
+	        android:textColor="#FFFFFFFF" />
 	
 	    <TextView
 	        android:id="@+id/maghrib_jamaa_textView"
@@ -212,7 +243,9 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="right"
 	        android:layout_weight="1"
-	        android:text="2:00" />
+	        android:lines="1"
+	        android:textColor="#FFFFFFFF" />
+
 	</LinearLayout>
 
 	<LinearLayout
@@ -227,7 +260,9 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="left"
 	        android:layout_weight="1"
-	        android:text="@string/isha_label" />
+	        android:lines="1"
+	        android:text="@string/isha_label"
+	        android:textColor="#FFFFFFFF" />
 	
 	    <TextView
 	        android:id="@+id/isha_start_textView"
@@ -235,7 +270,8 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="right"
 	        android:layout_weight="1"
-	        android:text="1:00" />
+	        android:lines="1"
+	        android:textColor="#FFFFFFFF" />
 	
 	    <TextView
 	        android:id="@+id/isha_jamaa_textView"
@@ -243,7 +279,9 @@
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="right"
 	        android:layout_weight="1"
-	        android:text="2:00" />
+	        android:lines="1"
+	        android:textColor="#FFFFFFFF" />
+
 	</LinearLayout>
 
 </LinearLayout>
