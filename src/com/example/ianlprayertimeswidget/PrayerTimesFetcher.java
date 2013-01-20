@@ -7,6 +7,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -33,7 +35,7 @@ public class PrayerTimesFetcher {
 	public PrayerTimings fetchTodaysPrayerTimes() throws ParseException {
 		PrayerTimings pt = null;
 		try {
-			Log.d("PTF", "calling processStream");
+			//TODO: GET LINK AND THEN UNCOMMENT CODE
 			pt = processStream(mContext.getAssets()
 				.open("OpenMosqueMLSample.xml"));
 			/*URL url = new URL(mURLFeed);
@@ -59,7 +61,13 @@ public class PrayerTimesFetcher {
 		
 		return pt;
 	}
-	//TODO: CHECK TIME AND COMPARE WITH TODAY TO GET CORRECT TIMES!!!
+	
+	/**
+	 * Parses XML file and extracts today's prayer times
+	 * 
+	 * @param input stream for XML file
+	 * @return PrayerTimings object for today
+	 */
 	private PrayerTimings processStream(InputStream in) {
 		PrayerTimings pTimings = null;
 		XmlPullParserFactory factory;
@@ -76,90 +84,97 @@ public class PrayerTimesFetcher {
 			// Continue until the end of the document is reached
 			while (eventType != XmlPullParser.END_DOCUMENT) {
 
-				// Check for a start tag of the oml:PrayerTimetable tag
+				// Check for a start tag of the PrayerTimetable tag
 				if (eventType == XmlPullParser.START_TAG &&
 						xpp.getName().equals("PrayerTimetable")) {
-					Log.d("PTF", "in PrayerTimetable tag");
 					eventType = xpp.next();
 			        
-					// Process each result within the oml:PrayerTimetable tag.
+					boolean isToday = true;
+					// Process each result within the PrayerTimetable tag.
 					while (!(eventType == XmlPullParser.END_TAG && 
-							xpp.getName().equals("PrayerTimetable"))) {
+							xpp.getName().equals("PrayerTimetable"))  && isToday) {
 						
-						// Check for the name tag within the oml:Day tag.
+						// Check for the name tag within the Day tag.
 						if (eventType == XmlPullParser.START_TAG
 								&& xpp.getName().equals("Day")) {
-							Log.d("PTF", "in day tag");
-							
+														
 							// Process each result within the Day tag.
 							while (!(eventType == XmlPullParser.END_TAG && 
 									xpp.getName().equals("Day"))) {
-								
+
 								switch (eventType) {
 								case XmlPullParser.START_TAG:
 									// Check for the name tag within the Date tag.
-									if (xpp.getName().equals("Date")) {
-										pTimings = new PrayerTimings(xpp.nextText());
+									if (xpp.getName().equals(getString(R.string.xml_date_tag))) {
+										String nextText = xpp.nextText();
+										// Check to see if correct day, if so then
+										// negate flag to prevent incorrect date's 
+										// data being written to PT object
+										if (isParsedDateToday(nextText)) {
+											isToday = false;
+										}
+										pTimings = new PrayerTimings(nextText);
 										break;
 									}
 									// Check for the name tag within the FajrStart tag.
-									if (xpp.getName().equals("FajrStart")) {
+									if (xpp.getName().equals(getString(R.string.xml_fajr_start_tag))) {
 										pTimings.getStartTimes().add(xpp.nextText());
 										break;
 									}		
 									// Check for the name tag within the FajrJamaat tag.
-									if (xpp.getName().equals("FajrJamaat")) {
+									if (xpp.getName().equals(getString(R.string.xml_fajr_jamaa_tag))) {
 										pTimings.getJamaaTimes().add(xpp.nextText());
 										break;
 									}
 									// Check for the name tag within the Shrooq tag.
-									if (xpp.getName().equals("Shrooq")) {
+									if (xpp.getName().equals(getString(R.string.xml_sunrise_tag))) {
 										pTimings.getStartTimes().add(xpp.nextText());
 										pTimings.getJamaaTimes().add("");
 										break;
 									}
 									// Check for the name tag within the DhuhrStart tag.
-									if (xpp.getName().equals("DhuhrStart")) {
+									if (xpp.getName().equals(getString(R.string.xml_dhuhr_start_tag))) {
 										pTimings.getStartTimes().add(xpp.nextText());
 										break;
 									}
 									// Check for the name tag within the DhuhrJamaat tag.
-									if (xpp.getName().equals("DhuhrJamaat")) {
+									if (xpp.getName().equals(getString(R.string.xml_dhuhr_jamaa_tag))) {
 										pTimings.getJamaaTimes().add(xpp.nextText());
 										break;
 									}
 									// Check for the name tag within the AsrStart tag.
-									if (xpp.getName().equals("AsrStart")) {
+									if (xpp.getName().equals(getString(R.string.xml_asr_start_tag))) {
 										pTimings.getStartTimes().add(xpp.nextText());
 										break;
 									}
 									// Check for the name tag within the AsrJamaat tag.
-									if (xpp.getName().equals("AsrJamaat")) {
+									if (xpp.getName().equals(getString(R.string.xml_asr_jamaa_tag))) {
 										pTimings.getJamaaTimes().add(xpp.nextText());
 										break;
 									}
 									// Check for the name tag within the MaghribStart tag.
-									if (xpp.getName().equals("MaghribStart")) {
+									if (xpp.getName().equals(getString(R.string.xml_maghrib_start_tag))) {
 										pTimings.getStartTimes().add(xpp.nextText());
 										break;
 									}
 									// Check for the name tag within the MaghribJamaat tag.
-									if (xpp.getName().equals("MaghribJamaat")) {
+									if (xpp.getName().equals(getString(R.string.xml_maghrib_jamaa_tag))) {
 										pTimings.getJamaaTimes().add(xpp.nextText());
 										break;
 									}
 									// Check for the name tag within the IshaaStart tag.
-									if (xpp.getName().equals("IshaaStart")) {
+									if (xpp.getName().equals(getString(R.string.xml_isha_start_tag))) {
 										pTimings.getStartTimes().add(xpp.nextText());
 										break;
 									}
 									// Check for the name tag within the IshaaJamaat tag.
-									if (xpp.getName().equals("IshaaJamaat")) {
+									if (xpp.getName().equals(getString(R.string.xml_isha_jamaa_tag))) {
 										pTimings.getJamaaTimes().add(xpp.nextText());
 										break;
 									}
 
 								default:
+									Log.d("PTF", "None");
 									break;
 								}
 								// Move on to the next tag.
@@ -171,11 +186,12 @@ public class PrayerTimesFetcher {
 						// Move on to the next tag.
 						eventType = xpp.next();
 					}
-					// Do something with each POI name.
-				}
+
+				} // End PrayerTimetable if check
+				
 				// Move on to the next result tag.
 				eventType = xpp.next();
-			}
+			} // End of Document While
 			
 		} 
 		catch (XmlPullParserException e) {
@@ -186,6 +202,21 @@ public class PrayerTimesFetcher {
 		}
 		
 		return pTimings;
+	}
+
+	/**
+	 * Checks to see if the parsed date is today's date
+	 * @param nextText - parsed date
+	 * @return boolean stating whether parsed date is today
+	 */
+	private boolean isParsedDateToday(String nextText) {
+		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String todaysDate = dateFormat.format(new Date());
+		return todaysDate.equals(nextText);
+	}
+	
+	private String getString(int stringId) {
+		return mContext.getResources().getString(stringId);
 	}
 
 }
