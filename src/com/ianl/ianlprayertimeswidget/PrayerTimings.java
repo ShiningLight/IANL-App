@@ -4,6 +4,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+/**
+ * Object to store today's prayer times. Also formats the date/times
+ * to choose a suitable way to display to the user.
+ * 
+ * @author Tehmur
+ *
+ */
 public class PrayerTimings {
 	final static public SimpleDateFormat prayerSdf = 
 			new SimpleDateFormat("HH:mm");

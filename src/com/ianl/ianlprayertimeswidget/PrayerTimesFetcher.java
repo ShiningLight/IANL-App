@@ -18,6 +18,14 @@ import com.example.ianlprayertimeswidget.R;
 
 import android.content.Context;
 
+/**
+ * Class to open URL stream to the XML file containing the prayer times,
+ * and then parse the XML file and extract today's prayer times and 
+ * create a PrayerTimings object with today's prayer times.
+ * 
+ * @author Tehmur
+ *
+ */
 public class PrayerTimesFetcher {
 	private Context mContext;
 	private final String mURLFeed;
