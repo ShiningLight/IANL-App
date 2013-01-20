@@ -11,7 +11,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp" >
 
         <TextView
             android:id="@+id/mosque_name_textView"
@@ -38,7 +39,8 @@
         android:id="@+id/headings_linearLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingBottom="2dp" >
 
         <TextView
             android:id="@+id/prayer_header_textView"
@@ -53,6 +55,7 @@
             android:id="@+id/start_header_textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:layout_weight="1"
             android:lines="1"
             android:text="@string/start_time_heading_tag" />
@@ -61,6 +64,7 @@
             android:id="@+id/jamaa_header_textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:layout_weight="1"
             android:lines="1"
             android:text="@string/jamaa_heading_tag" />
@@ -71,7 +75,8 @@
         android:id="@+id/fajr_linearLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingBottom="2dp" >
 
         <TextView
             android:id="@+id/fajr_title_textView"
@@ -107,7 +112,8 @@
         android:id="@+id/sunrise_linearLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:paddingBottom="2dp" >
 
 	    <TextView
 	        android:id="@+id/sunrise_title_textView"
@@ -144,7 +150,8 @@
 	    android:id="@+id/dhuhr_linearLayout"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="horizontal" >
+	    android:orientation="horizontal"
+	    android:paddingBottom="2dp" >
 	
 	    <TextView
 	        android:id="@+id/dhuhr_title_textView"
@@ -180,7 +187,8 @@
 	    android:id="@+id/asr_linearLayout"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="horizontal" >
+	    android:orientation="horizontal"
+	    android:paddingBottom="2dp" >
 	
 	    <TextView
 	        android:id="@+id/asr_title_textView"
@@ -216,7 +224,8 @@
 	    android:id="@+id/maghrib_linearLayout"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="horizontal" >
+	    android:orientation="horizontal"
+	    android:paddingBottom="2dp" >
 	
 	    <TextView
 	        android:id="@+id/maghrib_title_textView"
@@ -252,7 +261,8 @@
 	    android:id="@+id/isha_linearLayout"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="horizontal" >
+	    android:orientation="horizontal"
+	    android:paddingBottom="2dp" >
 	
 	    <TextView
 	        android:id="@+id/isha_title_textView"
