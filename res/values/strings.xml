@@ -16,7 +16,7 @@
     <string name="asr_label">Asr</string>
     <string name="maghrib_label">Maghrib</string>
     <string name="isha_label">Ishaa\'</string>
-    <string name="my_url_feed">https://www.</string>
+    <string name="my_url_feed">http://ianl.org.uk/prayertimes.xml</string>
     
     <string name="xml_prayertimetable_tag">PrayerTimetable</string>
     <string name="xml_day_tag">Day</string>
