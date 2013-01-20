@@ -1,4 +1,4 @@
-package com.example.ianlprayertimeswidget;
+package com.ianl.ianlprayertimeswidget;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,12 +15,12 @@ public class PrayerTimings {
 	private ArrayList<String> mStartTimes;
 	private ArrayList<String> mJamaaTimes;
 	
-/*	private Time fajr;
-	private Time sunrise;
-	private Time dhuhr;
-	private Time asr;
-	private Time maghrib;
-	private Time isha;*/
+/*	private String fajr;
+	private String sunrise;
+	private String dhuhr;
+	private String asr;
+	private String maghrib;
+	private String isha;*/
 
 	public PrayerTimings(String today) {
 		mToday = today;//dateSdf.format(new Date(today));

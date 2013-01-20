@@ -1,4 +1,6 @@
-package com.example.ianlprayertimeswidget;
+package com.ianl.ianlprayertimeswidget;
+
+import com.example.ianlprayertimeswidget.R;
 
 import android.os.Bundle;
 import android.app.Activity;

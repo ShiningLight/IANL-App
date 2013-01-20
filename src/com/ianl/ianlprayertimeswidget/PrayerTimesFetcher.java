@@ -1,4 +1,4 @@
-package com.example.ianlprayertimeswidget;
+package com.ianl.ianlprayertimeswidget;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,12 +14,13 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import com.example.ianlprayertimeswidget.R;
+
 import android.content.Context;
-import android.util.Log;
 
 public class PrayerTimesFetcher {
 	private Context mContext;
-	private final String mURLFeed; 
+	private final String mURLFeed;
 
 	public PrayerTimesFetcher(Context context) {
 		mContext = context;
@@ -27,41 +28,34 @@ public class PrayerTimesFetcher {
 	}	
 	
 	/**
-	 * Gets the prayer times from the database
+	 * Gets the prayer times by opening a connection to the 
+	 * URL containing the XML file
 	 * 
 	 * @return PrayerTimings object which contains todays prayer times
-	 * @throws ParseException
 	 */
 	public PrayerTimings fetchTodaysPrayerTimes() throws ParseException {
 		PrayerTimings pt = null;
 		try {
-			//TODO: GET LINK AND THEN UNCOMMENT CODE
-			pt = processStream(mContext.getAssets()
-				.open("OpenMosqueMLSample.xml"));
-			/*URL url = new URL(mURLFeed);
-			
+			URL url = new URL(mURLFeed);
 			// Create a new HTTP URL connection
 			URLConnection conn = url.openConnection();
 			HttpURLConnection httpConn = (HttpURLConnection) conn;
 			
-			int responseCode = httpConn.getResponseCode();
-			if (responseCode == HttpURLConnection.HTTP_OK) {
+			if (httpConn.getResponseCode() == HttpURLConnection.HTTP_OK) {
 				InputStream in = httpConn.getInputStream();
-				//pt = processStream(in);
-				pt = processStream(mContext.getAssets()
-						.open("OpenMosqueMLSample.xml"));
-			}*/
-		}
+				pt = processStream(in);
+			}
+		} 
 		catch (MalformedURLException e) {
 			e.printStackTrace();
-		}
+		} 
 		catch (IOException e) {
 			e.printStackTrace();
-		}		
-		
+		}
+	
 		return pt;
 	}
-	
+		
 	/**
 	 * Parses XML file and extracts today's prayer times
 	 * 
@@ -72,7 +66,6 @@ public class PrayerTimesFetcher {
 		PrayerTimings pTimings = null;
 		XmlPullParserFactory factory;
 		try {
-			Log.d("PTF", "in processStream");
 			factory = XmlPullParserFactory.newInstance();
 			factory.setNamespaceAware(true);
 			XmlPullParser xpp = factory.newPullParser();
@@ -174,23 +167,20 @@ public class PrayerTimesFetcher {
 									}
 
 								default:
-									Log.d("PTF", "None");
+									//Log.d("PTF", "None");
 									break;
-								}
-								// Move on to the next tag.
-								eventType = xpp.next();
-							}
+								}								
+								eventType = xpp.next(); // Move on to the next tag.
+							} // End Day while loop							
 							
-							
-						}
-						// Move on to the next tag.
-						eventType = xpp.next();
+						}						
+						eventType = xpp.next(); // Move on to the next tag.
 					}
 
-				} // End PrayerTimetable if check
+				} // End PrayerTimetable if check				
 				
-				// Move on to the next result tag.
-				eventType = xpp.next();
+				eventType = xpp.next(); // Move on to the next PrayerTimetable tag.
+				
 			} // End of Document While
 			
 		} 
@@ -215,6 +205,11 @@ public class PrayerTimesFetcher {
 		return todaysDate.equals(nextText);
 	}
 	
+	/**
+	 * String utility method to get string from strings.xml
+	 * @param stringId
+	 * @return string with ID given by stringId
+	 */
 	private String getString(int stringId) {
 		return mContext.getResources().getString(stringId);
 	}

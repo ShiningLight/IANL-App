@@ -1,6 +1,8 @@
-package com.example.ianlprayertimeswidget;
+package com.ianl.ianlprayertimeswidget;
 
-import java.text.ParseException;
+import java.util.concurrent.ExecutionException;
+
+import com.example.ianlprayertimeswidget.R;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -30,20 +32,19 @@ public class PrayerTimesWidget extends AppWidgetProvider {
 
 	private RemoteViews updatePrayerTimeWidgetUI(Context context) {
 		RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
-				R.layout.prayer_times_widget_layout);
-		
+				R.layout.prayer_times_widget_layout);		
 		try {
-			PrayerTimings pt = 
-					new PrayerTimesFetcher(context).fetchTodaysPrayerTimes();
+			PrayerTimings pt = new RetreiveFeedTask(context).execute().get();
 			
 			remoteViews = setUIWithTimes(remoteViews, pt);			
 			
-		} catch (ParseException e) {
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}		
 		
-		return remoteViews;
-		
+		return remoteViews;		
 	}
 
 	private RemoteViews setUIWithTimes(RemoteViews remoteViews, PrayerTimings pt) {
