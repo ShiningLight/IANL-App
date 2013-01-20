@@ -16,6 +16,20 @@
 		<oml:JummahTime fromDate="2013-01-04">12:45:00</oml:JummahTime>
 		<oml:JummahTime fromDate="2013-01-04">13:30:00</oml:JummahTime>
 	</oml:FridayJummahTimes>
+	   <oml:Day>
+        <oml:Date>2013-01-18</oml:Date>
+        <oml:FajrStart>05:57:00</oml:FajrStart>
+        <oml:FajrJamaat>06:30:00</oml:FajrJamaat>
+        <oml:Shrooq>07:52:00</oml:Shrooq>
+        <oml:DhuhrStart>12:17:00</oml:DhuhrStart>
+        <oml:DhuhrJamaat>13:00:00</oml:DhuhrJamaat>
+        <oml:AsrStart>14:41:00</oml:AsrStart>
+        <oml:AsrJamaat>15:15:00</oml:AsrJamaat>
+        <oml:MaghribStart>16:28:00</oml:MaghribStart>
+        <oml:MaghribJamaat>16:33:00</oml:MaghribJamaat>
+        <oml:IshaaStart>18:27:00</oml:IshaaStart>
+        <oml:IshaaJamaat>20:00:00</oml:IshaaJamaat>
+    </oml:Day>
 	<oml:Day>
 		<oml:Date>2013-01-19</oml:Date>
 		<oml:FajrStart>05:57:00</oml:FajrStart>
