@@ -8,6 +8,9 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 public class PrayerTimesWidget extends AppWidgetProvider {
@@ -32,19 +35,39 @@ public class PrayerTimesWidget extends AppWidgetProvider {
 
 	private RemoteViews updatePrayerTimeWidgetUI(Context context) {
 		RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
-				R.layout.prayer_times_widget_layout);		
-		try {
-			PrayerTimings pt = new RetreiveFeedTask(context).execute().get();
-			
-			remoteViews = setUIWithTimes(remoteViews, pt);			
-			
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}		
-		
+				R.layout.prayer_times_widget_layout);	
+		if (isOnline(context)) {
+			try {
+				PrayerTimings pt = new RetreiveFeedTask(context).execute().get();				
+				remoteViews = setUIWithTimes(remoteViews, pt);
+				
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			} catch (NullPointerException e) {
+				e.printStackTrace();
+			}
+		}
 		return remoteViews;		
+	}
+
+	private boolean isOnline(Context context) {
+		try {
+			ConnectivityManager connectivityManager = (ConnectivityManager) context
+					.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+			NetworkInfo networkInfo = connectivityManager
+					.getActiveNetworkInfo();
+			boolean connected = networkInfo != null
+					&& networkInfo.isAvailable() && networkInfo.isConnected();
+			Log.d("PTW", "Internet status is " + connected);
+			return connected;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	private RemoteViews setUIWithTimes(RemoteViews remoteViews, PrayerTimings pt) {

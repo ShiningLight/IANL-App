@@ -62,10 +62,16 @@ public class PrayerTimings {
 	}
 	
 	public String getStartTimesAtIndex(int index) {
+		if (mStartTimes.get(index) == null) {
+			return "";
+		}
 		return formatTimeString(mStartTimes.get(index));
 	}
 	
 	public String getJamaaTimesAtIndex(int index) {
+		if (mStartTimes.get(index) == null) {
+			return "";
+		}
 		return formatTimeString(mJamaaTimes.get(index));
 	}
 	
@@ -74,6 +80,9 @@ public class PrayerTimings {
 			return prayerSdf.format(prayerSdf.parse(time));
 		} 
 		catch (ParseException e) {
+			if (time == null) {
+				time = "";
+			}
 			return time; // return unformatted string
 		}
 	}
