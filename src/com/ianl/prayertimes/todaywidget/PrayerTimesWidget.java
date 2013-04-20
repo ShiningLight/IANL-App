@@ -1,8 +1,10 @@
-package com.ianl.ianlprayertimeswidget;
+package com.ianl.prayertimes.todaywidget;
 
 import java.util.concurrent.ExecutionException;
 
-import com.example.ianlprayertimeswidget.R;
+import com.ianl.R;
+import com.ianl.prayertimes.PrayerTimings;
+import com.ianl.prayertimes.RetreiveFeedTask;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;

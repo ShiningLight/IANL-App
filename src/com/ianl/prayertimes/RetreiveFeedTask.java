@@ -1,4 +1,4 @@
-package com.ianl.ianlprayertimeswidget;
+package com.ianl.prayertimes;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -10,7 +10,7 @@ import android.os.AsyncTask;
  * @author Tehmur
  *
  */
-class RetreiveFeedTask extends AsyncTask<String, Void, PrayerTimings> {
+public class RetreiveFeedTask extends AsyncTask<String, Void, PrayerTimings> {
 	private Context mContext;
 	
 	public RetreiveFeedTask(Context context) {

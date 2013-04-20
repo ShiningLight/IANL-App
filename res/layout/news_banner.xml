@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/news_banner_header"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:gravity="center_horizontal"
+        android:text="@string/masjid_news_banner_heading"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/news_headline"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:gravity="center_horizontal"
+        android:text="April timetable is now available"
+        android:singleLine="true" 
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit ="marquee_forever"
+        android:scrollHorizontally="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true" 
+        android:layout_below="@+id/news_banner_header"/>
+
+    <ImageView
+        android:id="@+id/right_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/arrow"
+        android:paddingRight="2dp" />
+
+    <ImageView
+        android:id="@+id/left_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/arrow_left" 
+        android:paddingLeft="2dp" />
+
+</RelativeLayout>

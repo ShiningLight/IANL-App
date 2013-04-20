@@ -1,4 +1,4 @@
-package com.ianl.ianlprayertimeswidget;
+package com.ianl.prayertimes;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +14,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import com.example.ianlprayertimeswidget.R;
+import com.ianl.R;
 
 import android.content.Context;
 
@@ -32,7 +32,7 @@ public class PrayerTimesFetcher {
 
 	public PrayerTimesFetcher(Context context) {
 		mContext = context;
-		mURLFeed = context.getResources().getString(R.string.my_url_feed);
+		mURLFeed = context.getResources().getString(R.string.todays_prayer_times_url_feed);
 	}	
 	
 	/**

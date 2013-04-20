@@ -1,4 +1,4 @@
-package com.ianl.ianlprayertimeswidget;
+package com.ianl.prayertimes;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
