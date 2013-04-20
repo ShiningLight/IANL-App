@@ -1,4 +1,4 @@
-IANL-PrayerTimetable
+IANL-App
 ====================
 
 Android app for IANL masjid.
