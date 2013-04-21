@@ -13,14 +13,14 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 public class PodcastKhutbahList extends Activity {
-	private String podcastType; //podcast type e.g. halaqah, khutba
+	private PodcastCategoryList.PodcastsCategories podcastType; //podcast type e.g. halaqah, khutba
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.podcasts_main);
 		//TODO:change below to be of the enum type
-		podcastType = getIntent().getStringExtra(PodcastCategoryList.PODCAST_TYPE);
+		podcastType = getIntent().getParcelableExtra(PodcastCategoryList.PODCAST_TYPE);
 		initView();
 	}
 
@@ -37,7 +37,7 @@ public class PodcastKhutbahList extends Activity {
 			e.printStackTrace();
 		}
 		
-        list.setAdapter(new EfficientAdapter(this, podcastList));
+        list.setAdapter(new PodcastEfficientAdapter(this, podcastList));
      	// Click event for single list row
         list.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,

@@ -18,12 +18,16 @@ class SAXHelper {
 	}
 
 	public ArrayList<Podcast> parseContent(String parseContent) {
-		PodcastRSSHandler df = new PodcastRSSHandler(new ArrayList<Podcast>());
+		// We need the SAX parser handler object
+		PodcastRSSHandler df = new PodcastRSSHandler();
 		try {
+			// At first we need to get an SAX Parser Factory object
 			SAXParserFactory spf = SAXParserFactory.newInstance();
-			SAXParser sp = spf.newSAXParser();
+			// Using factory we create a new SAX Parser instance
+			SAXParser sp = spf.newSAXParser();			
 			XMLReader xr = sp.getXMLReader();
 			xr.setContentHandler(df);
+			// We call the method parsing our RSS Feed
 			xr.parse(new InputSource(url.openStream()));
 		} catch (Exception e) {
 			e.printStackTrace();

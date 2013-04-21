@@ -15,7 +15,8 @@ import android.widget.ListView;
 
 public class PodcastCategoryList extends Activity {
 	protected final static String PODCAST_TYPE = "podcast_type";
-	private static enum PodcastsCategories {
+	
+	protected static enum PodcastsCategories {
 	    Downloaded, Khutbah, Halaqah, Other
 	}
 	
