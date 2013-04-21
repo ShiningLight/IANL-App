@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class EfficientAdapter extends BaseAdapter {
+public class PodcastEfficientAdapter extends BaseAdapter {
 	
 	public static class ViewHolder {
 		public TextView title;
@@ -26,7 +26,7 @@ public class EfficientAdapter extends BaseAdapter {
 	private ArrayList<Podcast> data;
 	private ViewHolder holder;
 
-	public EfficientAdapter(Activity a, ArrayList<Podcast> d) {
+	public PodcastEfficientAdapter(Activity a, ArrayList<Podcast> d) {
 		activity = a;
 		data = d;
 		inflater = (LayoutInflater) activity
