@@ -48,10 +48,14 @@
             android:label="@string/podcast_main_heading" >
         </activity>
         
-        
         <activity
             android:name="com.ianl.AboutActivity"
             android:label="@string/about_heading" >
+        </activity>
+        
+        <activity
+            android:name="com.ianl.masjidnews.NewsWebViewActivity"
+            android:label="@string/title_activity_news_web_view" >
         </activity>
         
     </application>
