@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import com.ianl.R;
+import com.ianl.podcasts.PodcastCategoryList.PodcastsCategories;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 public class PodcastKhutbahList extends Activity {
-	private PodcastCategoryList.PodcastsCategories podcastType; //podcast type e.g. halaqah, khutba
+	private PodcastsCategories podcastType; //podcast type e.g. halaqah, khutba
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class PodcastKhutbahList extends Activity {
         
         ArrayList<Podcast> podcastList = null;
         try {//TODO: make PodcastLoadingTask take in the podcast type
-        	podcastList = new PodcastLoadingTask(this).execute(
+        	podcastList = new PodcastLoadingTask(this, podcastType).execute(
         			getResources().getString((R.string.podcast_url_feed))).get();
 		} catch (InterruptedException e) {
 			e.printStackTrace();

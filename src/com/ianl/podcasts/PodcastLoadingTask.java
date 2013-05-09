@@ -3,24 +3,28 @@ package com.ianl.podcasts;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
+import com.ianl.podcasts.PodcastCategoryList.PodcastsCategories;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
 class PodcastLoadingTask extends AsyncTask<String, Void, ArrayList<Podcast>> {	
 	private Context mContext;
-	private ProgressDialog dialog;
+	private PodcastsCategories mPodcastCategory;
+	private ProgressDialog mDialog;
 	
-	public PodcastLoadingTask(Context context) {
+	public PodcastLoadingTask(Context context, PodcastsCategories podcastType) {
 		mContext = context;
+		mPodcastCategory = podcastType;
 	}
 	
 	@Override
 	protected void onPreExecute() {
-		dialog = new ProgressDialog(mContext);
-	    dialog.setMessage("Loading. Please wait...");
-	    dialog.setIndeterminate(true);
-	    dialog.show();
+		mDialog = new ProgressDialog(mContext);
+	    mDialog.setMessage("Loading. Please wait...");
+	    mDialog.setIndeterminate(true);
+	    mDialog.show();
 		super.onPreExecute();
 	}
 
@@ -32,13 +36,13 @@ class PodcastLoadingTask extends AsyncTask<String, Void, ArrayList<Podcast>> {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
-		return sh.parseContent("");
+		return sh.parseContent(mPodcastCategory);
 	}
 
 	@Override
 	protected void onPostExecute(ArrayList<Podcast> s) {
-		if (dialog.isShowing()) {
-	        dialog.dismiss();
+		if (mDialog.isShowing()) {
+	        mDialog.dismiss();
 	    }
 		super.onPostExecute(s);
 	}

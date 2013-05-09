@@ -10,6 +10,8 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
+import com.ianl.podcasts.PodcastCategoryList.PodcastsCategories;
+
 class SAXHelper {
 	private URL url;
 
@@ -17,9 +19,9 @@ class SAXHelper {
 		this.url = new URL(url);
 	}
 
-	public ArrayList<Podcast> parseContent(String parseContent) {
+	public ArrayList<Podcast> parseContent(PodcastsCategories podcastCategory) {
 		// We need the SAX parser handler object
-		PodcastRSSHandler df = new PodcastRSSHandler();
+		PodcastRSSHandler df = new PodcastRSSHandler(podcastCategory);
 		try {
 			// At first we need to get an SAX Parser Factory object
 			SAXParserFactory spf = SAXParserFactory.newInstance();
