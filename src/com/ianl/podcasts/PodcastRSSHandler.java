@@ -82,6 +82,10 @@ class PodcastRSSHandler extends DefaultHandler {
 					&& mCurrentPodcast.getArtist() == null) {
 				mCurrentPodcast.setArtist(mChars.toString());
 			}
+			else if (localName.equalsIgnoreCase("guid")
+					&& mCurrentPodcast.getUrl() == null) {
+				mCurrentPodcast.setUrl(mChars.toString());
+			}
 			else if (localName.equalsIgnoreCase("duration")
 					&& mCurrentPodcast.getDuration() == null) {
 				mCurrentPodcast.setDuration(mChars.toString());

@@ -6,6 +6,7 @@ public class Podcast {
 	private String title;
 	private String artist;
 	private String duration;
+	private String url;
 	//private Date when; 
 	
 	public Podcast() {}
@@ -34,5 +35,12 @@ public class Podcast {
 		this.duration = duration;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public String setUrl(String url) {
+		return this.url = url;
+	}
 
 }
