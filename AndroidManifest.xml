@@ -27,7 +27,7 @@
         </activity>
 
         <receiver
-            android:name="com.ianl.prayertimeswidget.todaywidget.PrayerTimesWidget"
+            android:name="com.ianl.prayertimes.todaywidget.PrayerTimesWidget"
             android:label="@string/prayer_timetable_widget_label" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -38,6 +38,11 @@
                 android:resource="@xml/prayer_time_widget_provider_info" />
         </receiver>
 
+        <activity
+            android:name="com.ianl.prayertimes.PrayerTimesActivity"
+            android:label="@string/prayer_timetable_widget_label" >
+        </activity>
+        
         <activity
             android:name="com.ianl.podcasts.PodcastCategoryList"
             android:label="@string/podcast_main_heading" >

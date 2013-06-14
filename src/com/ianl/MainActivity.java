@@ -6,6 +6,7 @@ import com.ianl.R;
 import com.ianl.masjidnews.NewsItem;
 import com.ianl.masjidnews.NewsWebViewActivity;
 import com.ianl.podcasts.PodcastCategoryList;
+import com.ianl.prayertimes.PrayerTimesActivity;
 import com.ianl.utils.UIUpdater;
 
 import android.os.Bundle;
@@ -78,7 +79,9 @@ public class MainActivity extends Activity {
 		case R.id.btn_places:
         	startActivity(new Intent(this, PodcastCategoryList.class));
 			break;
-
+		case R.id.btn_news_feed:
+        	startActivity(new Intent(this, PrayerTimesActivity.class));
+			break;
 		default:
 			break;
 		}

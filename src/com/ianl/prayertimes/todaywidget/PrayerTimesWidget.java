@@ -3,8 +3,9 @@ package com.ianl.prayertimes.todaywidget;
 import java.util.concurrent.ExecutionException;
 
 import com.ianl.R;
+import com.ianl.prayertimes.PrayerTimeLoadingTask;
 import com.ianl.prayertimes.PrayerTimings;
-import com.ianl.prayertimes.RetreiveFeedTask;
+import com.ianl.utils.DateAndTimeUtils;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -40,7 +41,9 @@ public class PrayerTimesWidget extends AppWidgetProvider {
 				R.layout.prayer_times_widget_layout);	
 		if (isOnline(context)) {
 			try {
-				PrayerTimings pt = new RetreiveFeedTask(context).execute().get();				
+				PrayerTimings pt = new PrayerTimeLoadingTask(context)
+						.execute(context.getString(
+								R.string.todays_prayer_times_url_feed)).get();
 				remoteViews = setUIWithTimes(remoteViews, pt);
 				
 			} catch (InterruptedException e) {
@@ -75,38 +78,38 @@ public class PrayerTimesWidget extends AppWidgetProvider {
 	private RemoteViews setUIWithTimes(RemoteViews remoteViews, PrayerTimings pt) {
 		// Set todays date
 		remoteViews.setTextViewText(R.id.todays_prayer_times_date_textView,
-				pt.getTodaysDate());
+				DateAndTimeUtils.formatDateString(pt.getTodaysDate()));
 
 		// Set the prayer times
 		remoteViews.setTextViewText(R.id.fajr_start_textView,
-				pt.getStartTimesAtIndex(0));
+				DateAndTimeUtils.formatTimeString(pt.getFajrStart()));
 		remoteViews.setTextViewText(R.id.fajr_jamaa_textView,
-				pt.getJamaaTimesAtIndex(0));
+				DateAndTimeUtils.formatTimeString(pt.getFajrJamaa()));
 		
 		remoteViews.setTextViewText(R.id.sunrise_start_textView,
-				pt.getStartTimesAtIndex(1));
+				DateAndTimeUtils.formatTimeString(pt.getSunrise()));
 		remoteViews.setTextViewText(R.id.sunrise_jamaa_textView,
-				pt.getJamaaTimesAtIndex(1));
+				"");
 
 		remoteViews.setTextViewText(R.id.dhuhr_start_textView,
-				pt.getStartTimesAtIndex(2));
+				DateAndTimeUtils.formatTimeString(pt.getDhuhrStart()));
 		remoteViews.setTextViewText(R.id.dhuhr_jamaa_textView,
-				pt.getJamaaTimesAtIndex(2));
+				DateAndTimeUtils.formatTimeString(pt.getDhuhrJamaa()));
 
 		remoteViews.setTextViewText(R.id.asr_start_textView,
-				pt.getStartTimesAtIndex(3));
+				DateAndTimeUtils.formatTimeString(pt.getAsrStart()));
 		remoteViews.setTextViewText(R.id.asr_jamaa_textView,
-				pt.getJamaaTimesAtIndex(3));
+				DateAndTimeUtils.formatTimeString(pt.getAsrJamaa()));
 
 		remoteViews.setTextViewText(R.id.maghrib_start_textView,
-				pt.getStartTimesAtIndex(4));
+				DateAndTimeUtils.formatTimeString(pt.getMaghribStart()));
 		remoteViews.setTextViewText(R.id.maghrib_jamaa_textView,
-				pt.getJamaaTimesAtIndex(4));
+				DateAndTimeUtils.formatTimeString(pt.getMaghribJamaa()));
 
 		remoteViews.setTextViewText(R.id.isha_start_textView,
-				pt.getStartTimesAtIndex(5));
+				DateAndTimeUtils.formatTimeString(pt.getIshaaStart()));
 		remoteViews.setTextViewText(R.id.isha_jamaa_textView,
-				pt.getJamaaTimesAtIndex(5));
+				DateAndTimeUtils.formatTimeString(pt.getIshaaJamaa()));
 		
 		return remoteViews;
 	}

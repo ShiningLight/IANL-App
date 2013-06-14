@@ -1,9 +1,5 @@
 package com.ianl.prayertimes;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
 /**
  * Object to store today's prayer times. Also formats the date/times
  * to choose a suitable way to display to the user.
@@ -11,80 +7,122 @@ import java.util.ArrayList;
  * @author Tehmur
  *
  */
-public class PrayerTimings {
-	final static public SimpleDateFormat prayerSdf = 
-			new SimpleDateFormat("HH:mm");
-	final private SimpleDateFormat dateSdf = 
-			new SimpleDateFormat("EEE d MMM ''yy");
-	
+public class PrayerTimings {	
 	private String mToday;
+	
+	private String mFajrStart;
+	private String mFajrJamaa;
+	
+	private String mSunrise;
+	
+	private String mDhuhrStart;
+	private String mDhuhrJamaa;
+	
+	private String mAsrStart;
+	private String mAsrJamaa;
+	
+	private String mMaghribStart;
+	private String mMaghribJamaa;
+	
+	private String mIshaaStart;
+	private String mIshaaJamaa;
 
-	private ArrayList<String> mStartTimes;
-	private ArrayList<String> mJamaaTimes;
-	
-/*	private String fajr;
-	private String sunrise;
-	private String dhuhr;
-	private String asr;
-	private String maghrib;
-	private String isha;*/
-
-	public PrayerTimings(String today) {
-		mToday = today;//dateSdf.format(new Date(today));
-		mStartTimes = new ArrayList<String>();
-		mJamaaTimes = new ArrayList<String>();
-	}
-	
-	public PrayerTimings(String today, ArrayList<String> start, ArrayList<String> jamaa) {
-		mToday = today;
-		mStartTimes = start;
-		mJamaaTimes = jamaa;
-	}
-	
-	public String getToday() {
-		return mToday;
-	}
-	
-	public ArrayList<String> getStartTimes() {
-		return mStartTimes;
-	}
-	
-	public ArrayList<String> getJamaaTimes() {
-		return mJamaaTimes;
-	}
+	public PrayerTimings() {}
 	
 	public String getTodaysDate() {
-		try {
-			return dateSdf.format(dateSdf.parse(mToday));
-		} catch (ParseException e) {
-			return mToday; // return unformatted string
-		}
+		return mToday;
 	}
-	
-	public String getStartTimesAtIndex(int index) {
-		if (mStartTimes.get(index) == null) {
-			return "";
-		}
-		return formatTimeString(mStartTimes.get(index));
+
+	public void setTodaysDate(String string) {
+		mToday = string;		
 	}
-	
-	public String getJamaaTimesAtIndex(int index) {
-		if (mStartTimes.get(index) == null) {
-			return "";
-		}
-		return formatTimeString(mJamaaTimes.get(index));
+
+	public String getFajrStart() {
+		return mFajrStart;
 	}
-	
-	private String formatTimeString(String time) {
-		try {
-			return prayerSdf.format(prayerSdf.parse(time));
-		} 
-		catch (ParseException e) {
-			if (time == null) {
-				time = "";
-			}
-			return time; // return unformatted string
-		}
+
+	public void setFajrStart(String mFajrStart) {
+		this.mFajrStart = mFajrStart;
+	}
+
+	public String getFajrJamaa() {
+		return mFajrJamaa;
+	}
+
+	public void setFajrJamaa(String mFajrJamaa) {
+		this.mFajrJamaa = mFajrJamaa;
+	}
+
+	public String getSunrise() {
+		return mSunrise;
+	}
+
+	public void setSunrise(String mSunrise) {
+		this.mSunrise = mSunrise;
+	}
+
+	public String getDhuhrStart() {
+		return mDhuhrStart;
+	}
+
+	public void setDhuhrStart(String mDhuhrStart) {
+		this.mDhuhrStart = mDhuhrStart;
+	}
+
+	public String getDhuhrJamaa() {
+		return mDhuhrJamaa;
+	}
+
+	public void setDhuhrJamaa(String mDhuhrJamaa) {
+		this.mDhuhrJamaa = mDhuhrJamaa;
+	}
+
+	public String getAsrStart() {
+		return mAsrStart;
+	}
+
+	public void setAsrStart(String mAsrStart) {
+		this.mAsrStart = mAsrStart;
+	}
+
+	public String getAsrJamaa() {
+		return mAsrJamaa;
+	}
+
+	public void setAsrJamaa(String mAsrJamaa) {
+		this.mAsrJamaa = mAsrJamaa;
+	}
+
+	public String getMaghribStart() {
+		return mMaghribStart;
+	}
+
+	public void setMaghribStart(String mMaghribStart) {
+		this.mMaghribStart = mMaghribStart;
+	}
+
+	public String getMaghribJamaa() {
+		return mMaghribJamaa;
+	}
+
+	public void setMaghribJamaa(String mMaghribJamaa) {
+		this.mMaghribJamaa = mMaghribJamaa;
+	}
+
+	public String getIshaaStart() {
+		return mIshaaStart;
+	}
+
+	public void setIshaaStart(String mIshaaStart) {
+		this.mIshaaStart = mIshaaStart;
+	}
+
+	public String getIshaaJamaa() {
+		return mIshaaJamaa;
+	}
+
+	public void setIshaaJamaa(String mIshaaJamaa) {
+		this.mIshaaJamaa = mIshaaJamaa;
 	}
 	
 }
